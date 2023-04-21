@@ -1,24 +1,65 @@
-# README
+## GraphQL の公式ドキュメントに基づいた Rails によるプロジェクト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- プロジェクト
 
-Things you may want to cover:
+公式ドキュメントの基づき、次の機能を備えた[Hackernews](https://news.ycombinator.com)クローンのバックエンドの実装
 
-* Ruby version
+・リンクのリストを表示する
 
-* System dependencies
+・認証システム
 
-* Configuration
+・ユーザーは新しいリンクを作成可能
 
-* Database creation
+・ユーザーはリンクに投票可能
 
-* Database initialization
+- Ruby のバージョン
 
-* How to run the test suite
+  3.2.3
 
-* Services (job queues, cache servers, search engines, etc.)
+- Rails のバージョン
 
-* Deployment instructions
+  7.0.4.3
 
-* ...
+- データベース
+
+sqlite3
+
+### 公式ドキュメントの訂正点
+
+**-GraphQL のバージョン-**
+
+バージョンが古いからか、**rails g graphql:install** 時にエラーが発生するので、バージョンを上げた。
+
+```
+# gem 'graphql', '1.11.6'
+gem 'graphql', '~> 1.12.0'
+```
+
+### Rails での GraphQL の使い方
+
+**-クエリの作成-**
+
+クエリの定義をターミナル上でできる。
+
+```
+rails g graphql:object LinkType id:ID! url:String! description:String!
+
+# 通常のクエリの定義
+type Link {
+    id: ID!
+    url: String!
+    description: String!
+}
+```
+
+これにより、app/graphql/types/タイプ名\_type.rb が作成される。
+
+```
+module Types
+    class LinkType < Types::BaseObject
+        field :id, ID, null: false
+        field :url, String, null: false
+        field :description, String, null: false
+    end
+end
+```
