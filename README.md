@@ -26,11 +26,11 @@
 
 - データベース
 
-sqlite3
+  sqlite3
 
-### 公式ドキュメントの訂正点
+## 公式ドキュメントの訂正点
 
-**-GraphQL のバージョン-**
+### GraphQL のバージョン
 
 バージョンが古いからか、**rails g graphql:install** 時にエラーが発生するので、バージョンを上げた。
 
@@ -39,9 +39,9 @@ sqlite3
 gem 'graphql', '~> 1.12.0'
 ```
 
-### Rails での GraphQL の使い方
+## Rails での GraphQL の使い方
 
-**-クエリの作成-**
+### クエリの作成
 
 クエリの定義をターミナル上でできる。
 
@@ -68,7 +68,7 @@ module Types
 end
 ```
 
-**-ミューテーションの作成-**
+### ミューテーションの作成
 
 ミューテーションはスキーマで自動的に公開される
 
@@ -98,20 +98,11 @@ module Mutations
         end
     end
 end
-
-# Graphql のミューテーション
-
-mutation{
-    createLink(description: String, url: String) {
-        description,
-        url,
-    }
-}
 ```
 
-**-ミューテーションのテスト-**
+### ミューテーションのテスト
 
-定義したミューテーションのリゾルバに対して、単体テストを行うことも可能。[Resolvers::CreateLink のテスト]()
+定義したミューテーションのリゾルバに対して、単体テストを行うことも可能。([Resolvers::CreateLink のテスト](https://github.com/DaisukeKarasawa/graphql-tutorial/blob/main/test/models/mutations/create_link_test.rb))
 
 始めに、'Mutations::CreateLink'のインスタンスを作成し、与えられた引数をそのクラスに渡す。その後、resolve メソッドを呼び出して、GraphQL のミューテーションを実行し、リンクを作成する。
 
