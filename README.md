@@ -39,7 +39,7 @@
 gem 'graphql', '~> 1.12.0'
 ```
 
-## GraphQL on Rails
+## GraphQL on Rails (basic)
 
 ### クエリの作成(スキーマ)
 
